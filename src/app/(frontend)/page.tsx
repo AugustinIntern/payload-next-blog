@@ -1,6 +1,4 @@
 export default async function HomePage() {
-
-  return (
-    null;
-  )
+  return
+  null
 }
