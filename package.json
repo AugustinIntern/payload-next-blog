@@ -18,7 +18,7 @@
     "nuke": "psql -d payload_next_blog -c \"DROP SCHEMA public CASCADE; CREATE SCHEMA public;\" && pnpm payload migrate:fresh && pnpm seed"
   },
   "dependencies": {
-    "@payloadcms/db-postgres": "3.80.0",
+    "@payloadcms/db-postgres": "^3.80.0",
     "@payloadcms/next": "3.80.0",
     "@payloadcms/richtext-lexical": "3.80.0",
     "@payloadcms/ui": "3.80.0",
