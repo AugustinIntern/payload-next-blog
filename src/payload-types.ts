@@ -193,7 +193,7 @@ export interface Article {
   readTimeInMins?: number | null;
   coverImage: number | Media;
   author: number | ArticleAuthor;
-  status: 'Published' | 'Draft';
+  status: 'Draft' | 'Published';
   publishedAt?: string | null;
   updatedAt: string;
   createdAt: string;

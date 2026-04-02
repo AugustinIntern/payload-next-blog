@@ -35,7 +35,7 @@ export function ArticleCard({
           alt={`Cover image for "${title}"`}
           width={600}
           height={300}
-          className="h-50 object-cover object-center w-full"
+          className="h-[200px] object-cover object-center w-full"
           placeholder="blur"
           blurDataURL={coverImage.blurDataURL}
         />
@@ -61,5 +61,5 @@ export function ArticleCard({
 }
 
 export function ArticleCardSkeleton() {
-  return <div className="rounded-md h-87.5 animate-pulse bg-gray-700" />
+  return <div className="rounded-md h-[350px] animate-pulse bg-gray-700" />
 }

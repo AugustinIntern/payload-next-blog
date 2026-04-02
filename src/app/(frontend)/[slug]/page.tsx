@@ -3,7 +3,6 @@ import { ArticleMetadata } from '../_components/article-metadata'
 import { getArticleBySlug } from '@/collections/Articles/fetchers'
 import { notFound } from 'next/navigation'
 import { relationIsObject } from '@/lib/payload/helpers/relation-is-object'
-import { RichTextField } from '@payloadcms/richtext-lexical/client'
 import { RichText } from '@/lib/payload/components/rich-text'
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -44,7 +43,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         height={300}
         className="w-full rounded-md object-center object-cover"
         placeholder="blur"
-        blurDataURL={article.coverImage.blurDataUrl}
+        blurDataURL={article.coverImage.blurDataURL}
       />
 
       {/* content */}

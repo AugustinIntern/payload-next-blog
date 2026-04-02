@@ -7,14 +7,14 @@ export const metadata = {
   title: 'Payload Blank Template',
 }
 
-export default async function RootLayout(props: { children: React.ReactNode }) {
-  const { children } = props
-
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
         <ThemeProvider>
-          <main>{children}</main>
+          <main>
+            <div className="container py-20">{children}</div>
+          </main>
         </ThemeProvider>
       </body>
     </html>

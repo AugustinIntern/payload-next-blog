@@ -4,7 +4,7 @@ export default function BlogPostLayout({ children }: { children: React.ReactNode
   return (
     <div className="max-w-3xl w-full mx-auto">
       <Link
-        href="/blog"
+        href="/"
         aria-label="Back to blog"
         className="inline-flex items-center gap-2 mb-8 no-underline relative after:content-[''] after:absolute after:left-1 after:-bottom-1 after:right-0 after:h-0.5 after:bg-gray-600 after:hidden hover:after:block"
       >
