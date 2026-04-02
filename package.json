@@ -15,6 +15,7 @@
     "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
     "seed": "tsx -r dotenv/config src/scripts/seed/script.ts",
+    "vercel-build": "payload migrate && next build",
     "nuke": "psql -d payload_next_blog -c \"DROP SCHEMA public CASCADE; CREATE SCHEMA public;\" && pnpm payload migrate:fresh && pnpm seed"
   },
   "dependencies": {
