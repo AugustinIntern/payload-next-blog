@@ -2,6 +2,8 @@ import { CollectionConfig } from 'payload'
 import { generateSlugHook } from './hooks/generate-slug.hook'
 import { generateContentSummaryHook } from './hooks/generate-content-summary.hook'
 import { convertLexicalToPlaintext } from 'node_modules/@payloadcms/richtext-lexical/dist/features/converters/lexicalToPlaintext/sync'
+import { object } from 'zod/v4-mini'
+import { STATUS_OPTIONS } from './constants'
 
 export const Articles: CollectionConfig = {
   slug: 'articles',
@@ -69,8 +71,8 @@ export const Articles: CollectionConfig = {
     {
       name: 'status',
       type: 'select',
-      options: ['Draft', 'Published'],
-      defaultValue: 'Draft',
+      options: Object.values(STATUS_OPTIONS),
+      defaultValue: STATUS_OPTIONS.DRAFT,
       required: true,
     },
     {
