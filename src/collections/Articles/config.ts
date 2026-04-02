@@ -1,9 +1,9 @@
-import { CollectionConfig } from 'payload'
-import { generateSlugHook } from './hooks/generate-slug.hook'
+import { convertLexicalToPlaintext } from '@payloadcms/richtext-lexical/plaintext'
+import type { CollectionConfig } from 'payload'
+import { CACHE_TAG_ARTICLES, STATUS_OPTIONS } from './constants'
 import { generateContentSummaryHook } from './hooks/generate-content-summary.hook'
-import { convertLexicalToPlaintext } from 'node_modules/@payloadcms/richtext-lexical/dist/features/converters/lexicalToPlaintext/sync'
-import { object } from 'zod/v4-mini'
-import { STATUS_OPTIONS } from './constants'
+import { generateSlugHook } from './hooks/generate-slug.hook'
+import { revalidateTag } from 'next/cache'
 
 export const Articles: CollectionConfig = {
   slug: 'articles',
@@ -19,9 +19,7 @@ export const Articles: CollectionConfig = {
       type: 'text',
       required: true,
       unique: true,
-      hooks: {
-        beforeValidate: [generateSlugHook],
-      },
+      hooks: { beforeValidate: [generateSlugHook] },
     },
     {
       name: 'content',
@@ -32,9 +30,7 @@ export const Articles: CollectionConfig = {
       name: 'contentSummary',
       type: 'textarea',
       required: true,
-      hooks: {
-        beforeValidate: [generateContentSummaryHook],
-      },
+      hooks: { beforeValidate: [generateContentSummaryHook] },
     },
     {
       name: 'readTimeInMins',
@@ -43,12 +39,13 @@ export const Articles: CollectionConfig = {
       hooks: {
         beforeChange: [
           ({ siblingData }) => {
+            // ensure that the data is not stored in DB
             delete siblingData.readTimeInMins
           },
         ],
         afterRead: [
           ({ data }) => {
-            const text = convertLexicalToPlaintext({ data: data?.content }).trim()
+            const text = convertLexicalToPlaintext({ data: data?.content })
             const wordsPerMinute = 200
             const words = text.trim().split(/\s+/).length
             return Math.max(1, Math.ceil(words / wordsPerMinute))
@@ -71,18 +68,21 @@ export const Articles: CollectionConfig = {
     {
       name: 'status',
       type: 'select',
+      required: true,
       options: Object.values(STATUS_OPTIONS),
       defaultValue: STATUS_OPTIONS.DRAFT,
-      required: true,
     },
     {
       name: 'publishedAt',
       type: 'date',
       required: true,
       admin: {
-        condition: (data) => data.status === 'Published',
+        condition: (data) => data?.status === STATUS_OPTIONS.PUBLISHED,
         date: { pickerAppearance: 'dayAndTime' },
       },
     },
   ],
+  hooks: {
+    afterChange: [() => revalidateTag(CACHE_TAG_ARTICLES, 'max')],
+  },
 }
