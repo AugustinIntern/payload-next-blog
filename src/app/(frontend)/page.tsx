@@ -10,7 +10,7 @@ export default async function BlogIndexPage() {
     <div className="flex flex-col gap-8">
       <div className="flex justify-end">
         <Link
-          href="http://localhost:3000/admin/login"
+          href="/admin/login"
           className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
         >
           Admin Login
