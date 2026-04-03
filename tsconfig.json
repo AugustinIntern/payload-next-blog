@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "ignoreDeprecations": "5.5",
-    "baseUrl": ".",
+    // "ignoreDeprecations": "5.0",
+    // "baseUrl": ".",
     "lib": [
       "DOM",
       "DOM.Iterable",
