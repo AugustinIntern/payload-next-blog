@@ -1,6 +1,4 @@
-import { file } from 'node_modules/zod/v4/mini/external.cjs'
 import type { CollectionConfig } from 'payload'
-import { da } from 'payload/i18n/da'
 import { generateBlurDataURL, isEligibleForBlurDataURL } from './lib/generate-blur-data-url'
 
 export const Media: CollectionConfig = {
@@ -17,11 +15,13 @@ export const Media: CollectionConfig = {
     {
       name: 'blurDataURL',
       type: 'text',
-      required: true,
+      required: false,
       admin: { hidden: true },
     },
   ],
-  upload: true,
+  upload: {
+    staticDir: '/tmp/media',
+  },
   hooks: {
     beforeChange: [
       async ({ operation, data, req }) => {
