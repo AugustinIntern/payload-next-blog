@@ -1,4 +1,4 @@
-import { Payload } from 'node_modules/payload/dist/types'
+import { Payload } from 'payload'
 import { faker } from '@faker-js/faker'
 import { ARTICLE_AUTHOR_ROLE_OPTIONS } from '@/collections/ArticleAuthors/constants'
 import { createMediaFromImageUrl } from '../lib/create-media-from-image-url'
