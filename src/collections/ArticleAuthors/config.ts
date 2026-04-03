@@ -1,4 +1,3 @@
-import { O } from 'node_modules/@faker-js/faker/dist/airline-eVQV6kbz'
 import { CollectionConfig } from 'payload'
 import { ARTICLE_AUTHOR_ROLE_OPTIONS } from './constants'
 
